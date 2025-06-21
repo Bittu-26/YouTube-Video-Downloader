@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>YouDown - YouTube Downloader</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5163041540989959"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>YouDown</h1>
+        <p>Download YouTube videos and audio with ease.</p>
+
+        <input type="text" id="videoURL" placeholder="e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+        <button onclick="fetchVideoInfo()">Fetch Video Info</button>
+
+        <!-- Video Info -->
+        <div id="videoInfo" style="display: none; margin: 15px 0;">
+            <img id="videoThumbnail" src="" alt="Video thumbnail" style="max-width: 100%; border-radius: 5px; margin-bottom: 10px;" />
+            <h3 id="videoTitle"></h3>
+            <small id="videoDuration"></small>
+        </div>
+
+        <!-- Download Options -->
+        <div id="downloadOptions" style="display: none;">
+            <p>Select format:</p>
+
+            <div class="input-group">
+                <label for="videoQuality">Video Quality:</label>
+                <select id="videoQuality" class="styled-select">
+                    <option value="1080p">1080p</option>
+                    <option value="720p" selected>720p</option>
+                    <option value="480p">480p</option>
+                    <option value="360p">360p</option>
+                    <option value="240p">240p</option>
+                    <option value="144p">144p</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="audioBitrate">Audio Bitrate (kbps):</label>
+                <select id="audioBitrate" class="styled-select">
+                    <option value="320">320</option>
+                    <option value="256">256</option>
+                    <option value="192" selected>192</option>
+                    <option value="128">128</option>
+                </select>
+            </div>
+
+            <button class="download-btn" onclick="downloadVideo('video')">Download Video</button>
+            <button class="download-btn" onclick="downloadVideo('audio')">Download Audio</button>
+        </div>
+
+        <!-- Download Progress -->
+        <div id="downloadProgress" style="display: none; margin-top: 15px;">
+            <progress value="0" max="100"></progress>
+            <p id="progressText">Preparing download...</p>
+        </div>
+
+        <p class="copyright">© 2025 YouDown. For personal use only. Please respect copyright laws.</p>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
