@@ -37,10 +37,9 @@ def extract_video_id(url):
         if len(last_part) == 11:
             return last_part
     except Exception:
-        # NOTE: This only catches parsing errors for poorly formed URLs, not valid/invalid YouTube links
-        raise ValueError("Invalid YouTube URL format")
+        raise ValueError("Invalid URL format.")
 
-    raise ValueError("Could not extract video ID from the provided link.")
+    raise ValueError("Could not extract video ID from the provided link. Please ensure it is a valid YouTube video URL.")
 
 # --- Get YouTube Video Info ---
 def get_video_info(url, retries=3):
@@ -49,7 +48,6 @@ def get_video_info(url, retries=3):
         ydl_opts = {'quiet': True}
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                # The extract_info call is where yt-dlp checks if the video exists/is available
                 info = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
                 return {
                     'title': info.get('title'),
@@ -89,7 +87,7 @@ def check():
         url = request.json.get('url')
         if not url:
             return jsonify({'error': 'URL is required', 'available': False}), 400
-        
+            
         info = get_video_info(url)
         return jsonify(info)
         
@@ -102,7 +100,7 @@ def check():
         }), 400
         
     except Exception as e:
-        # Catch all other exceptions (like network or yt-dlp errors) and return 500
+        # Catch all other exceptions (e.g., yt-dlp, network issues) and return 500
         print(f"Error in /check (Internal Server Error): {e}")
         return jsonify({
             'error': 'Could not get video information. Please ensure the link is public and available.',
@@ -115,8 +113,8 @@ def check():
 def download():
     url = request.json.get('url')
     format_type = request.json.get('format', 'video')
-    quality = request.json.get('quality')# e.g., "720p"
-    bitrate = request.json.get('bitrate')# e.g., "192"
+    quality = request.json.get('quality')  # e.g., "720p"
+    bitrate = request.json.get('bitrate')  # e.g., "192"
 
     if not url:
         return jsonify({'error': 'URL is required'}), 400
@@ -147,7 +145,9 @@ def download():
                 'outtmpl': output_template,
                 'quiet': True,
                 'no_warnings': True,
-                'noplaylist': True
+                'noplaylist': True,
+                # FIX: Add a browser user-agent to help mitigate 403 Forbidden errors
+                'http_headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
             }
 
             if format_type == 'audio':
@@ -161,7 +161,6 @@ def download():
                 result = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=True)
                 file_path = ydl.prepare_filename(result)
                 if format_type == 'audio':
-                    # yt-dlp renames the file during post-processing
                     file_path = os.path.splitext(file_path)[0] + '.mp3'
 
             with open(file_path, 'rb') as f:
@@ -177,7 +176,7 @@ def download():
             )
             
     except ValueError as e:
-        # FIX: Catch ValueError here as well for malformed download URLs
+        # Catch ValueError for malformed download URLs
         return jsonify({'error': str(e)}), 400
         
     except Exception as e:
@@ -198,4 +197,5 @@ def static_files(path):
 
 # --- Start Server ---
 if __name__ == '__main__':
-    app.run(port=5000)
+    # Running in debug mode helps surface detailed errors like the 403 Forbidden details
+    app.run(port=5000, debug=True)
