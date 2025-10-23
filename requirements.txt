@@ -1,3 +1,4 @@
 Flask
 yt-dlp
 requests
+gunicorn  # <-- ADD THIS
