@@ -57,6 +57,8 @@ def get_video_info(url, retries=3):
                     'isShort': '/shorts/' in url
                 }
         except Exception:
+            # This path (oEmbed fallback) is often hit when yt-dlp fails signature extraction, 
+            # which is why length returns 0/None.
             print("yt-dlp failed, trying oEmbed fallback...")
             try:
                 r = requests.get(
@@ -67,7 +69,8 @@ def get_video_info(url, retries=3):
                 data = r.json()
                 return {
                     'title': data['title'],
-                    'length': 0,
+                    # oEmbed does not provide duration, so it returns 0
+                    'length': 0, 
                     'thumbnail': data['thumbnail_url'],
                     'available': True,
                     'isShort': '/shorts/' in url
@@ -92,7 +95,7 @@ def check():
         return jsonify(info)
         
     except ValueError as e:
-        # FIX: Catch ValueError (raised by extract_video_id) and return 400 Bad Request
+        # Catch ValueError (from extract_video_id) and return 400 Bad Request
         print(f"Error in /check (Bad Request): {e}")
         return jsonify({
             'error': str(e),
@@ -146,7 +149,7 @@ def download():
                 'quiet': True,
                 'no_warnings': True,
                 'noplaylist': True,
-                # FIX: Add a browser user-agent to help mitigate 403 Forbidden errors
+                # Add a browser user-agent to mitigate 403 Forbidden errors
                 'http_headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
             }
 
@@ -197,9 +200,8 @@ def static_files(path):
 
 # --- Start Server ---
 if __name__ == '__main__':
-    # Get the port from the environment variable set by the host (Vercel)
+    # FIX for Vercel Docker Deployment: Dynamically get port from environment
+    # This block only runs during local development. 
+    # Vercel uses Gunicorn (via Dockerfile) in production.
     port = int(os.environ.get('PORT', 5000))
-    # Note: When deploying with Gunicorn (recommended), this block might not run, 
-    # but it's essential for local testing.
     app.run(host='0.0.0.0', port=port, debug=True)
-
