@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify, send_from_directory, Response
 import os
 import re
 import tempfile
@@ -12,7 +12,12 @@ def extract_video_id(url):
     if not url:
         raise ValueError("URL is required")
 
-    
+    patterns = [
+        r'(?:youtube\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|shorts/|live/|youtu\.be/)([^"&?/\\s]{11}))',
+        r'youtube\.com/watch\?.*v=([^"&?/\\s]{11})',
+        r'youtube\.com/shorts/([^"&?/\\s]{11})',
+        r'youtu\.be/([^"&?/\\s]{11})'
+    ]
 
     for pattern in patterns:
         match = re.search(pattern, url)
@@ -47,7 +52,7 @@ def get_video_info(url, retries=3):
                 return {
                     'title': info.get('title'),
                     'length': info.get('duration'),
-                    'thumbnail': info.get('thumbnail') or f'https://img.youtube.com/vi/maxresdefault.jpg',
+                    'thumbnail': info.get('thumbnail') or f'https://img.youtube.com/vi/{video_id}/maxresdefault.jpg',
                     'available': True,
                     'isShort': '/shorts/' in url
                 }
@@ -124,7 +129,13 @@ def download():
                     ydl_format = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
 
             # yt-dlp options
-           
+            ydl_opts = {
+                'format': ydl_format,
+                'outtmpl': output_template,
+                'quiet': True,
+                'no_warnings': True,
+                'noplaylist': True
+            }
 
             if format_type == 'audio':
                 ydl_opts['postprocessors'] = [{
