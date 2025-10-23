@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 5. Copy the rest of the application code
 COPY . .
 
-# 6. Define the command to run the application
-#    The server must listen on the port specified by the environment variable, 
-#    which Vercel automatically sets.
-CMD ["python", "server.py"]
+
+# 6. Define the command to run the application using Gunicorn
+#    Gunicorn runs the application defined in the 'server' module (server.py) 
+#    and the Flask instance 'app'.
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "server:app"]
