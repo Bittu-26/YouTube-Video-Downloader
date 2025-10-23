@@ -47,9 +47,11 @@ def extract_video_id(url):
 def get_video_info(url, retries=3):
     try:
         video_id = extract_video_id(url)
-        ydl_opts = {'quiet': True}
+        # Increase the connection timeout slightly to give YouTube's server more time
+        ydl_opts = {'quiet': True, 'socket_timeout': 10} 
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                # Ensure we are explicitly using HTTPS
                 info = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
                 return {
                     'title': info.get('title'),
@@ -59,13 +61,14 @@ def get_video_info(url, retries=3):
                     'isShort': '/shorts/' in url
                 }
         except Exception:
-            # This is the path taken when signature extraction fails, leading to length: 0
+            # Fallback for when yt-dlp fails signature extraction/connection
             print("yt-dlp failed, trying oEmbed fallback...")
             try:
                 r = requests.get(
                     f'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json',
                     headers={'User-Agent': 'Mozilla/5.0'},
-                    timeout=5
+                    # Increase requests timeout too
+                    timeout=10 
                 )
                 data = r.json()
                 return {
@@ -207,3 +210,4 @@ if __name__ == '__main__':
     # Dynamically get port from environment for local testing
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
+
