@@ -197,5 +197,9 @@ def static_files(path):
 
 # --- Start Server ---
 if __name__ == '__main__':
-    # Running in debug mode helps surface detailed errors like the 403 Forbidden details
-    app.run(port=5000, debug=True)
+    # Get the port from the environment variable set by the host (Vercel)
+    port = int(os.environ.get('PORT', 5000))
+    # Note: When deploying with Gunicorn (recommended), this block might not run, 
+    # but it's essential for local testing.
+    app.run(host='0.0.0.0', port=port, debug=True)
+
