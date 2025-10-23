@@ -4,6 +4,8 @@ import re
 import tempfile
 import yt_dlp
 import requests
+import time # NEW: Import for sleep function
+import random # NEW: Import for random delay
 
 app = Flask(__name__)
 
@@ -57,8 +59,7 @@ def get_video_info(url, retries=3):
                     'isShort': '/shorts/' in url
                 }
         except Exception:
-            # This path (oEmbed fallback) is often hit when yt-dlp fails signature extraction, 
-            # which is why length returns 0/None.
+            # This is the path taken when signature extraction fails, leading to length: 0
             print("yt-dlp failed, trying oEmbed fallback...")
             try:
                 r = requests.get(
@@ -69,8 +70,7 @@ def get_video_info(url, retries=3):
                 data = r.json()
                 return {
                     'title': data['title'],
-                    # oEmbed does not provide duration, so it returns 0
-                    'length': 0, 
+                    'length': 0, # oEmbed does not provide duration
                     'thumbnail': data['thumbnail_url'],
                     'available': True,
                     'isShort': '/shorts/' in url
@@ -95,7 +95,7 @@ def check():
         return jsonify(info)
         
     except ValueError as e:
-        # Catch ValueError (from extract_video_id) and return 400 Bad Request
+        # Catch ValueError (from invalid URL) and return 400 Bad Request
         print(f"Error in /check (Bad Request): {e}")
         return jsonify({
             'error': str(e),
@@ -128,6 +128,9 @@ def download():
         clean_title = re.sub(r'[^\w\s.-]', '', info['title'])
         extension = 'mp3' if format_type == 'audio' else 'mp4'
         filename = f'{clean_title}.{extension}'
+
+        # WORKAROUND: Introduce a random delay to mitigate bot detection (HTTP 403)
+        time.sleep(random.uniform(2, 5)) 
 
         with tempfile.TemporaryDirectory() as tmpdir:
             output_template = os.path.join(tmpdir, '%(title)s.%(ext)s')
@@ -186,6 +189,7 @@ def download():
         print(f"Error in /download: {e}")
         return jsonify({
             'error': 'Download initialization failed',
+            # Include details to debug the 403 or FFMPEG error
             'details': str(e) if os.environ.get('FLASK_ENV') == 'development' else None
         }), 500
 
@@ -200,8 +204,6 @@ def static_files(path):
 
 # --- Start Server ---
 if __name__ == '__main__':
-    # FIX for Vercel Docker Deployment: Dynamically get port from environment
-    # This block only runs during local development. 
-    # Vercel uses Gunicorn (via Dockerfile) in production.
+    # Dynamically get port from environment for local testing
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
