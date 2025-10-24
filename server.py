@@ -9,6 +9,11 @@ import random
 
 app = Flask(__name__)
 
+# --- Utility to get Proxy URL ---
+# This is where the code reads the Vercel Environment Variable
+def get_proxy():
+    return os.environ.get('YTDLP_PROXY')
+
 # --- YouTube Video ID Extraction ---
 def extract_video_id(url):
     if not url:
@@ -45,13 +50,12 @@ def extract_video_id(url):
 
 # --- Get YouTube Video Info ---
 def get_video_info(url, retries=3):
-    # Retrieve proxy URL from environment, if available
-    proxy_url = os.environ.get('YTDLP_PROXY')
+    proxy_url = get_proxy()
 
     try:
         video_id = extract_video_id(url)
-        # Increased socket_timeout to 10s for better stability
-        ydl_opts = {'quiet': True, 'socket_timeout': 10}
+        # Increase the connection timeout and prepare for proxy
+        ydl_opts = {'quiet': True, 'socket_timeout': 10} 
         
         # ADD PROXY TO YDL_OPTS FOR RELIABILITY
         if proxy_url:
@@ -59,6 +63,7 @@ def get_video_info(url, retries=3):
 
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                # Ensure we are explicitly using HTTPS
                 info = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
                 return {
                     'title': info.get('title'),
@@ -71,11 +76,16 @@ def get_video_info(url, retries=3):
             # Fallback for when yt-dlp fails signature extraction/connection
             print("yt-dlp failed, trying oEmbed fallback...")
             try:
-                # Use requests directly for oEmbed with a reasonable timeout
+                # Use requests for oEmbed; must pass proxy if available
+                requests_kwargs = {'timeout': 10}
+                if proxy_url:
+                    # Requests uses a different proxy dictionary format
+                    requests_kwargs['proxies'] = {'http': proxy_url, 'https': proxy_url}
+                    
                 r = requests.get(
                     f'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json',
                     headers={'User-Agent': 'Mozilla/5.0'},
-                    timeout=10 
+                    **requests_kwargs # Unpack proxy/timeout kwargs
                 )
                 data = r.json()
                 return {
@@ -86,7 +96,7 @@ def get_video_info(url, retries=3):
                     'isShort': '/shorts/' in url
                 }
             except:
-                raise Exception("Both yt-dlp and oEmbed methods failed or video is unavailable.")
+                raise Exception("Both yt-dlp and oEmbed methods failed or video is unavailable. IP/Proxy may be blocked.")
     except Exception as e:
         if retries > 0:
             print(f"Retrying... ({retries} attempts left)")
@@ -128,9 +138,7 @@ def download():
     format_type = request.json.get('format', 'video')
     quality = request.json.get('quality')
     bitrate = request.json.get('bitrate')
-    
-    # Retrieve proxy URL from environment, if available
-    proxy_url = os.environ.get('YTDLP_PROXY')
+    proxy_url = get_proxy()
 
     if not url:
         return jsonify({'error': 'URL is required'}), 400
@@ -166,7 +174,6 @@ def download():
                 'no_warnings': True,
                 'noplaylist': True,
                 'socket_timeout': 15, # Increased timeout for download stability
-                # Add a browser user-agent to mitigate 403 Forbidden errors
                 'http_headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
             }
             
