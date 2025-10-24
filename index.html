@@ -6,61 +6,187 @@
     <title>YouDown - YouTube Downloader</title>
     <link rel="stylesheet" href="./styles.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5163041540989959"
-     crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <h1>YouDown</h1>
-        <p>Download YouTube videos and audio with ease.</p>
+        <section class="main-app">
+            <h1>YouDown</h1>
+            <p>Download YouTube videos and audio with ease.</p>
 
-        <input type="text" id="videoURL" placeholder="e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
-        <button onclick="fetchVideoInfo()">Fetch Video Info</button>
+            <input type="text" id="videoURL" placeholder="e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+            <button onclick="fetchVideoInfo()">Fetch Video Info</button>
 
-        <!-- Video Info -->
-        <div id="videoInfo" style="display: none; margin: 15px 0;">
-            <img id="videoThumbnail" src="" alt="Video thumbnail" style="max-width: 100%; border-radius: 5px; margin-bottom: 10px;" />
-            <h3 id="videoTitle"></h3>
-            <small id="videoDuration"></small>
-        </div>
-
-        <!-- Download Options -->
-        <div id="downloadOptions" style="display: none;">
-            <p>Select format:</p>
-
-            <div class="input-group">
-                <label for="videoQuality">Video Quality:</label>
-                <select id="videoQuality" class="styled-select">
-                    <option value="1080p">1080p</option>
-                    <option value="720p" selected>720p</option>
-                    <option value="480p">480p</option>
-                    <option value="360p">360p</option>
-                    <option value="240p">240p</option>
-                    <option value="144p">144p</option>
-                </select>
+            <div id="videoInfo" style="display: none; margin: 15px 0;">
+                <img id="videoThumbnail" src="" alt="Video thumbnail" style="max-width: 100%; border-radius: 5px; margin-bottom: 10px;" />
+                <h3 id="videoTitle"></h3>
+                <small id="videoDuration"></small>
             </div>
 
-            <div class="input-group">
-                <label for="audioBitrate">Audio Bitrate (kbps):</label>
-                <select id="audioBitrate" class="styled-select">
-                    <option value="320">320</option>
-                    <option value="256">256</option>
-                    <option value="192" selected>192</option>
-                    <option value="128">128</option>
-                </select>
+            <div id="downloadOptions" style="display: none;">
+                <p>Select format:</p>
+
+                <div class="input-group">
+                    <label for="videoQuality">Video Quality:</label>
+                    <select id="videoQuality" class="styled-select">
+                        <option value="1080p">1080p</option>
+                        <option value="720p" selected>720p</option>
+                        <option value="480p">480p</option>
+                        <option value="360p">360p</option>
+                        <option value="240p">240p</option>
+                        <option value="144p">144p</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="audioBitrate">Audio Bitrate (kbps):</label>
+                    <select id="audioBitrate" class="styled-select">
+                        <option value="320">320</option>
+                        <option value="256">256</option>
+                        <option value="192" selected>192</option>
+                        <option value="128">128</option>
+                    </select>
+                </div>
+
+                <button class="download-btn" onclick="downloadVideo('video')">Download Video</button>
+                <button class="download-btn" onclick="downloadVideo('audio')">Download Audio</button>
             </div>
 
-            <button class="download-btn" onclick="downloadVideo('video')">Download Video</button>
-            <button class="download-btn" onclick="downloadVideo('audio')">Download Audio</button>
-        </div>
-
-        <!-- Download Progress -->
-        <div id="downloadProgress" style="display: none; margin-top: 15px;">
-            <progress value="0" max="100"></progress>
-            <p id="progressText">Preparing download...</p>
-        </div>
+            <div id="downloadProgress" style="display: none; margin-top: 15px;">
+                <progress value="0" max="100"></progress>
+                <p id="progressText">Preparing download...</p>
+            </div>
+        </section>
 
         <p class="copyright">© 2025 YouDown. For personal use only. Please respect copyright laws.</p>
     </div>
+
+    <hr/>
+
+    <section id="why-choose-us" class="section-features container">
+        <div class="tag">Why Choose Us</div>
+        <h2>Powerful Features</h2>
+        <p class="subtitle">Everything you need to download videos quickly and easily</p>
+        
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="placeholder-shield-icon.svg" alt="100% Free Icon" />
+                <h3>100% Free</h3>
+                <p>No hidden fees, subscriptions, or limits. Download unlimited videos without paying a cent.</p>
+            </div>
+            <div class="feature-item">
+                <img src="placeholder-check-icon.svg" alt="No Registration Icon" />
+                <h3>No Registration</h3>
+                <p>Skip the hassle of creating accounts or logging in. Instant access with no personal data required.</p>
+            </div>
+            <div class="feature-item">
+                <img src="placeholder-lightning-icon.svg" alt="Lightning Fast Icon" />
+                <h3>Lightning Fast</h3>
+                <p>Our optimized servers process your requests instantly, delivering videos in seconds, not minutes.</p>
+            </div>
+            <div class="feature-item">
+                <img src="placeholder-play-icon.svg" alt="HD Quality Icon" />
+                <h3>HD Quality</h3>
+                <p>Download videos in the highest quality available, preserving the original resolution and clarity.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section id="how-it-works" class="section-how-it-works container">
+        <div class="tag">Simple</div>
+        <h2>How It Works</h2>
+        <p>Download your videos in three simple steps</p>
+        
+        <div class="step-grid">
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <img src="placeholder-copy-icon.svg" alt="Copy URL Icon" /> 
+                <h3>Copy URL</h3>
+                <p>Find the video you want and copy its URL from the address bar or share menu</p>
+            </div>
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <img src="placeholder-paste-icon.svg" alt="Paste URL Icon" /> 
+                <h3>Paste URL</h3>
+                <p>Paste the copied URL into our downloader input field at the top of this page</p>
+            </div>
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <img src="placeholder-download-icon.svg" alt="Download Icon" /> 
+                <h3>Download</h3>
+                <p>Click the download button and your video will be saved directly to your device</p>
+            </div>
+        </div>
+        <button class="try-it-btn" onclick="document.getElementById('videoURL').focus()">Try It Now</button>
+    </section>
+    
+    <hr/>
+
+    <section id="trusted-by" class="section-trusted container">
+        <div class="tag">Trusted by Thousands</div>
+        <h2>User Statistics</h2>
+        <p>Join thousands of satisfied users who download videos every day</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <p class="stat-value">50K+</p>
+                <p class="stat-label">Daily Users</p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-value">100K+</p>
+                <p class="stat-label">Happy Users</p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-value">4.9/5</p>
+                <p class="stat-label">Users Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section id="faq" class="section-faq container">
+        <div class="tag">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <p class="subtitle">Find answers to common questions about our video downloader</p>
+        
+        <div class="faq-group">
+            <h3>General Questions</h3>
+            <details>
+                <summary>Is this service completely free?</summary>
+                <p>Yes, our video downloader is 100% free with no hidden charges or subscription fees.</p>
+            </details>
+            <details>
+                <summary>Do I need to create an account?</summary>
+                <p>No, there is absolutely no registration or login required. You can start downloading instantly.</p>
+            </details>
+            <details>
+                <summary>Is it legal to download videos?</summary>
+                <p>Downloading publicly shared content is generally acceptable for personal use. However, you must always respect the creator's copyright and not use the videos for commercial purposes without permission.</p>
+            </details>
+        </div>
+
+        <div class="faq-group">
+            <h3>Technical Questions</h3>
+            <details>
+                <summary>What types of content can I download?</summary>
+                <p>Our tool works with public YouTube videos.</p>
+            </details>
+            <details>
+                <summary>How is the video quality?</summary>
+                <p>We download videos in the highest resolution made available by YouTube's servers, up to 1080p.</p>
+            </details>
+            <details>
+                <summary>Does it work on mobile?</summary>
+                <p>Yes, the website is fully responsive and works on any device, including iOS, Android, tablets, and desktops.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="final-footer">
+        <p>© 2025 Application. All rights reserved. Made by Ayush</p>
+    </footer>
 
     <script src="./script.js"></script>
 </body>
