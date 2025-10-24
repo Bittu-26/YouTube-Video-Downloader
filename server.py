@@ -10,7 +10,7 @@ import random
 app = Flask(__name__)
 
 # --- Utility to get Proxy URL ---
-# This is where the code reads the Vercel Environment Variable
+# Reads the proxy setting from the Vercel Environment Variable
 def get_proxy():
     return os.environ.get('YTDLP_PROXY')
 
@@ -57,7 +57,7 @@ def get_video_info(url, retries=3):
         # Increase the connection timeout and prepare for proxy
         ydl_opts = {'quiet': True, 'socket_timeout': 10} 
         
-        # ADD PROXY TO YDL_OPTS FOR RELIABILITY
+        # FIX: Add proxy configuration for yt-dlp metadata check
         if proxy_url:
             ydl_opts['proxy'] = proxy_url
 
@@ -76,7 +76,7 @@ def get_video_info(url, retries=3):
             # Fallback for when yt-dlp fails signature extraction/connection
             print("yt-dlp failed, trying oEmbed fallback...")
             try:
-                # Use requests for oEmbed; must pass proxy if available
+                # Configure requests to use the proxy for the OEmbed fallback as well
                 requests_kwargs = {'timeout': 10}
                 if proxy_url:
                     # Requests uses a different proxy dictionary format
@@ -85,7 +85,7 @@ def get_video_info(url, retries=3):
                 r = requests.get(
                     f'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json',
                     headers={'User-Agent': 'Mozilla/5.0'},
-                    **requests_kwargs # Unpack proxy/timeout kwargs
+                    **requests_kwargs # Pass proxy and timeout to requests
                 )
                 data = r.json()
                 return {
@@ -138,7 +138,7 @@ def download():
     format_type = request.json.get('format', 'video')
     quality = request.json.get('quality')
     bitrate = request.json.get('bitrate')
-    proxy_url = get_proxy()
+    proxy_url = get_proxy() # Get proxy URL here
 
     if not url:
         return jsonify({'error': 'URL is required'}), 400
@@ -177,7 +177,7 @@ def download():
                 'http_headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
             }
             
-            # ADD PROXY TO YDL_OPTS FOR DOWNLOAD
+            # FIX: Add proxy configuration for the download step
             if proxy_url:
                 ydl_opts['proxy'] = proxy_url
 
