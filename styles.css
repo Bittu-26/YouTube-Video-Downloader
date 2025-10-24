@@ -1,36 +1,54 @@
+/* --- Global Reset & Base Styling --- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #2a0d4a;
+    background-color: #2a0d4a; /* Deep Violet Background */
     color: white;
     text-align: center;
-    padding: 50px;
+    padding: 0;
+    margin: 0;
 }
 
+/* Base Link Style */
+a {
+    color: #a06ac9; 
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: #8a2be2;
+}
+
+/* --- Main Input Container (Kept Narrow for Focus) --- */
 .container {
     max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    background-color: #4b1e7a;
-    border-radius: 10px;
+    margin: 80px auto; /* Increased vertical margin for space */
+    padding: 40px; /* Increased internal padding for space */
+    background-color: #4b1e7a; 
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow */
 }
 
+/* --- Form Elements (Optimized Spacing) --- */
 input {
     width: 80%;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
+    padding: 14px; /* Increased padding */
+    margin: 18px 0 14px; /* Increased vertical margin */
+    border-radius: 10px; 
     border: none;
+    background-color: #f3eaff; 
+    color: #000;
 }
 
 button {
     background-color: #8a2be2;
     color: white;
-    padding: 10px 16px;
-    margin: 5px;
+    padding: 14px 24px; /* Increased padding */
+    margin: 10px 5px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 15px;
+    border-radius: 10px; 
+    font-size: 16px;
+    font-weight: 600;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
@@ -38,105 +56,227 @@ button:hover {
     background-color: #6a1bb2;
 }
 
-button:active {
-    transform: scale(0.98);
-}
+.download-btn { margin-top: 15px; } /* More space after selects */
 
-/* NEW STYLES */
-
+/* --- Download Options Group (Optimized Spacing) --- */
 .input-group {
-    margin-bottom: 15px;
-    text-align: left;
+    margin-bottom: 25px; /* More space between option groups */
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+label { 
     color: #e0d1ff;
-    text-align: left;
+    margin-bottom: 8px; /* More space below label */
 }
 
 .styled-select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 14px; 
+    border: 1px solid #6a1bb2;
+    border-radius: 10px;
     background-color: #f3eaff;
     color: #000;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    appearance: none; 
 }
 
-.styled-select:focus {
-    border-color: #8a2be2;
-    background-color: #fff;
-    outline: none;
-}
+/* Progress Bar & Cleanup */
+progress { height: 18px; }
+progress::-webkit-progress-value { background-color: #8a2be2; }
+progress::-moz-progress-bar { background-color: #8a2be2; }
+select { appearance: none; }
+.copyright { font-size: 12px; margin-top: 40px; } /* More space above copyright */
 
-.download-btn {
-    background-color: #8a2be2;
-    color: white;
-    padding: 10px 16px;
-    margin-right: 10px;
+
+/* --- INFORMATIONAL SECTIONS STYLING (Spacious Layout) --- */
+
+/* Horizontal Divider */
+hr {
     border: none;
-    border-radius: 6px;
+    border-top: 1px solid #6a1bb2; 
+    opacity: 0.5;
+    margin: 100px auto; /* Significantly increased margin for separation */
+    width: 90%;
+}
+
+/* Typography and Tag */
+h2 { color: white; font-size: 2.5em; margin-top: 10px; } /* Larger heading */
+.subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 60px; } /* More space below subtitle */
+.tag { 
+    background-color: #6cf988; 
+    color: #2a0d4a; 
+    padding: 8px 18px; /* Larger tag padding */
+    border-radius: 25px;
+    margin-bottom: 20px; /* More space below tag */
+    display: inline-block;
+}
+
+/* **Wide Section Layout Containers (Increased Vertical Padding)** */
+.section-features,
+.section-how-it-works,
+.section-trusted,
+.section-faq {
+    max-width: 1200px; 
+    padding: 40px 20px; /* Vertical padding added to sections */
+    margin: 40px auto; /* Vertical spacing maintained by HRs */
+}
+
+/* Grid Layouts (Increased Grid Gap) */
+.feature-grid, .step-grid, .stats-grid {
+    display: grid;
+    gap: 40px; /* Increased gap between cards */
+    margin-bottom: 40px;
+    padding: 0; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-grid { grid-template-columns: repeat(4, 1fr); }
+.step-grid { grid-template-columns: repeat(3, 1fr); }
+.stats-grid { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+
+
+/* --- Card Styles (Increased Padding for Spaciness) --- */
+.feature-item, .step-item, .stat-item {
+    background-color: #ffffff; 
+    color: #343a40; 
+    padding: 45px 30px; /* **CRITICAL: Significantly Increased Card Padding** */
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    border: 1px solid #e0d1ff; 
+    transition: box-shadow 0.3s ease;
+}
+
+/* --- Feature/Icon Styling (Increased spacing) --- */
+.feature-item h3 { 
+    color: #8a2be2; 
+    font-size: 1.2em; 
+    margin-top: 25px; /* More space below icon */
+    margin-bottom: 10px;
+}
+.feature-item img {
+    width: 50px; 
+    height: 50px;
+    margin-bottom: 20px; 
+    border: 2px solid #8a2be2;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #e0d1ff; 
+}
+.feature-item p {
+    color: #6c757d;
+    font-size: 1em;
+    line-height: 1.7; /* Increased line height for airy text */
+}
+
+
+/* --- How It Works Section (Spacing) --- */
+.step-number {
+    background-color: #8a2be2;
+    width: 45px; /* Slightly larger number circle */
+    height: 45px;
+    font-size: 1.4em;
+    margin: 0 auto 25px; /* More space below number circle */
+}
+.step-item h3 { margin-top: 5px; margin-bottom: 10px; }
+
+.try-it-btn {
+    padding: 16px 45px; /* Larger, more spaced button */
+    margin-top: 50px; /* More space above CTA */
+}
+
+
+/* --- Trusted By Section (Statistics Spacing) --- */
+.stat-item {
+    padding: 50px 30px; /* Increased stat card padding */
+}
+.stat-value {
+    font-size: 3.2em; /* Largest stat numbers */
+    margin-bottom: 10px;
+}
+
+/* --- FAQ Section (Accordion) --- */
+.section-faq { 
+    /* Increased bottom margin for better separation */
+    max-width: 900px; 
+    margin: 0 auto 100px; 
+    padding: 0 20px; /* Ensure horizontal padding on smaller screens */
+    text-align: left;
+}
+
+.faq-group {
+    /* Increased border radius and padding for spaciness */
+    border: 1px solid #e0d1ff; 
+    border-radius: 15px;
+    padding: 35px;
+    background-color: #ffffff; 
+    color: #343a40; 
+    margin-bottom: 30px; /* Space between FAQ boxes if there are multiple */
+}
+
+.faq-group h3 {
+    /* Slightly larger font and more vertical space */
+    color: #8a2be2; 
+    font-size: 1.6em;
+    margin-bottom: 25px;
+}
+
+.faq-group summary {
+    /* Increased vertical padding for more breathing room */
+    font-weight: 600;
+    padding: 22px 0; 
+    list-style: none;
+    position: relative;
+    border-bottom: 1px solid #e9ecef; /* Light divider line */
+    color: #343a40;
     cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.download-btn:hover {
-    background-color: #6a1bb2;
+.faq-group details:last-of-type summary {
+    /* Remove border from the last summary to keep it clean */
+    border-bottom: none;
 }
 
-.download-btn:active {
-    transform: scale(0.97);
+.faq-group summary::after {
+    /* Arrow styling */
+    content: '▼'; 
+    position: absolute;
+    right: 0;
+    color: #8a2be2; 
+    font-size: 1em;
+    transition: transform 0.3s ease;
 }
 
-progress {
-    width: 100%;
-    height: 16px;
-    border-radius: 6px;
-    overflow: hidden;
+.faq-group details[open] summary::after {
+    content: '▲';
 }
 
-progress::-webkit-progress-bar {
-    background-color: #ccc;
-    border-radius: 6px;
+.faq-group details p {
+    /* Styling for the answer text */
+    padding: 20px; /* Padding for the answer text block */
+    margin: 0;
+    color: #6c757d;
+    line-height: 1.6;
+    border-top: 1px solid #f8f9fa; /* Very subtle top border */
+}
+/* --- Final Footer --- */
+.final-footer {
+    padding: 40px; /* Thicker, more spacious footer */
+    background-color: #4b1e7a; 
+    color: #e0d1ff;
+    margin-top: 80px; 
+    font-size: 1em;
 }
 
-progress::-webkit-progress-value {
-    background-color: #8a2be2;
-    border-radius: 6px;
-}
-
-progress::-moz-progress-bar {
-    background-color: #8a2be2;
-    border-radius: 6px;
-}
-
-.downloadProgress p {
-    margin-top: 10px;
-}
-
-select {
-    appearance: none;
-}
-  
-select::-ms-expand {
-    display: none;
-}
-
-select:focus {
-    outline: none;
-}
-
-option {
-    color: #000;
-}
-
-.copyright {
-    font-size: 12px;
-    margin-top: 20px;
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    /* Stack all grids vertically on smaller screens */
+    .feature-grid, .step-grid, .stats-grid {
+        grid-template-columns: 1fr; 
+        padding: 0 15px;
+    }
+    .container {
+        margin: 40px auto;
+    }
 }
