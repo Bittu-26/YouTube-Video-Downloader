@@ -18,7 +18,7 @@ a:hover {
     color: #8a2be2;
 }
 
-/* --- Main Input Container (Kept Narrow for Focus) --- */
+/* --- Main Input Container (.container) --- */
 .container {
     max-width: 500px;
     margin: 80px auto; /* Increased vertical margin for space */
@@ -28,7 +28,7 @@ a:hover {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow */
 }
 
-/* --- Form Elements (Optimized Spacing) --- */
+/* --- Form Elements --- */
 input {
     width: 80%;
     padding: 14px; /* Increased padding */
@@ -56,19 +56,29 @@ button:hover {
     background-color: #6a1bb2;
 }
 
-.download-btn { margin-top: 15px; } /* More space after selects */
+/* --- Download Buttons & Progress --- */
+.download-btn { margin-top: 15px; }
 
-/* --- Download Options Group (Optimized Spacing) --- */
+/* Progress Bar & Cleanup */
+progress { height: 18px; }
+progress::-webkit-progress-value { background-color: #8a2be2; }
+progress::-moz-progress-bar { background-color: #8a2be2; }
+.copyright { font-size: 12px; margin-top: 40px; }
+
+
+/* --- Download Options Group (.input-group) --- */
 .input-group {
-    margin-bottom: 25px; /* More space between option groups */
+    margin-bottom: 25px; 
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+    text-align: left; /* Align text within the group */
 }
 
 label { 
     color: #e0d1ff;
-    margin-bottom: 8px; /* More space below label */
+    margin-bottom: 8px;
+    display: block; /* Ensure label takes full width */
 }
 
 .styled-select {
@@ -80,52 +90,56 @@ label {
     color: #000;
     appearance: none; 
 }
-
-/* Progress Bar & Cleanup */
-progress { height: 18px; }
-progress::-webkit-progress-value { background-color: #8a2be2; }
-progress::-moz-progress-bar { background-color: #8a2be2; }
 select { appearance: none; }
-.copyright { font-size: 12px; margin-top: 40px; } /* More space above copyright */
+option { color: #000; }
 
-
-/* --- INFORMATIONAL SECTIONS STYLING (Spacious Layout) --- */
+/* --- INFORMATIONAL SECTIONS LAYOUT (Wide Structure) --- */
 
 /* Horizontal Divider */
 hr {
     border: none;
     border-top: 1px solid #6a1bb2; 
     opacity: 0.5;
-    margin: 100px auto; /* Significantly increased margin for separation */
+    margin: 100px auto; /* Increased margin for separation */
     width: 90%;
 }
 
 /* Typography and Tag */
-h2 { color: white; font-size: 2.5em; margin-top: 10px; } /* Larger heading */
-.subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 60px; } /* More space below subtitle */
+h2 { color: white; font-size: 2.5em; margin-top: 10px; }
+.subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 60px; }
 .tag { 
     background-color: #6cf988; 
     color: #2a0d4a; 
-    padding: 8px 18px; /* Larger tag padding */
+    padding: 8px 18px; 
     border-radius: 25px;
-    margin-bottom: 20px; /* More space below tag */
+    margin-bottom: 20px; 
     display: inline-block;
 }
 
-/* **Wide Section Layout Containers (Increased Vertical Padding)** */
+/* **Wide Section Containers** */
 .section-features,
 .section-how-it-works,
 .section-trusted,
 .section-faq {
-    max-width: 1200px; 
-    padding: 40px 20px; /* Vertical padding added to sections */
-    margin: 40px auto; /* Vertical spacing maintained by HRs */
+    max-width: 1200px; /* Allows these sections to stretch wide */
+    padding: 40px 20px; 
+    margin: 40px auto; 
+    text-align: center;
 }
 
-/* Grid Layouts (Increased Grid Gap) */
+/* Long Form Content Block Styling */
+.long-content-block p {
+    color: #e0d1ff; 
+    font-size: 1.1em;
+    line-height: 1.8; 
+    margin-bottom: 30px; 
+}
+
+
+/* --- Grid Layouts (Horizontal Structure) --- */
 .feature-grid, .step-grid, .stats-grid {
     display: grid;
-    gap: 40px; /* Increased gap between cards */
+    gap: 40px; 
     margin-bottom: 40px;
     padding: 0; 
     margin-left: auto;
@@ -139,20 +153,24 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; } /* Larger heading */
 
 /* --- Card Styles (Increased Padding for Spaciness) --- */
 .feature-item, .step-item, .stat-item {
-    background-color: #ffffff; 
+    background-color: #ffffff; /* White card background */
     color: #343a40; 
-    padding: 45px 30px; /* **CRITICAL: Significantly Increased Card Padding** */
+    padding: 45px 30px; 
     border-radius: 15px; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
     border: 1px solid #e0d1ff; 
     transition: box-shadow 0.3s ease;
 }
 
-/* --- Feature/Icon Styling (Increased spacing) --- */
+.feature-item:hover, .step-item:hover, .stat-item:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); 
+}
+
+/* --- Feature/Icon Styling --- */
 .feature-item h3 { 
     color: #8a2be2; 
     font-size: 1.2em; 
-    margin-top: 25px; /* More space below icon */
+    margin-top: 25px; 
     margin-bottom: 10px;
 }
 .feature-item img {
@@ -167,79 +185,81 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; } /* Larger heading */
 .feature-item p {
     color: #6c757d;
     font-size: 1em;
-    line-height: 1.7; /* Increased line height for airy text */
+    line-height: 1.7; 
 }
 
 
 /* --- How It Works Section (Spacing) --- */
 .step-number {
     background-color: #8a2be2;
-    width: 45px; /* Slightly larger number circle */
+    width: 45px;
     height: 45px;
     font-size: 1.4em;
-    margin: 0 auto 25px; /* More space below number circle */
+    margin: 0 auto 25px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
 }
-.step-item h3 { margin-top: 5px; margin-bottom: 10px; }
+.step-item h3 { margin-top: 5px; margin-bottom: 10px; color: #343a40; }
 
 .try-it-btn {
-    padding: 16px 45px; /* Larger, more spaced button */
-    margin-top: 50px; /* More space above CTA */
+    padding: 16px 45px; 
+    margin-top: 50px; 
 }
 
 
 /* --- Trusted By Section (Statistics Spacing) --- */
-.stat-item {
-    padding: 50px 30px; /* Increased stat card padding */
-}
 .stat-value {
-    font-size: 3.2em; /* Largest stat numbers */
+    font-size: 3.2em;
+    font-weight: bold;
+    color: #8a2be2; 
     margin-bottom: 10px;
+}
+.stat-label {
+    font-size: 1em;
+    color: #6c757d;
 }
 
 /* --- FAQ Section (Accordion) --- */
 .section-faq { 
-    /* Increased bottom margin for better separation */
     max-width: 900px; 
     margin: 0 auto 100px; 
-    padding: 0 20px; /* Ensure horizontal padding on smaller screens */
+    padding: 0 20px; 
     text-align: left;
 }
 
 .faq-group {
-    /* Increased border radius and padding for spaciness */
     border: 1px solid #e0d1ff; 
     border-radius: 15px;
     padding: 35px;
     background-color: #ffffff; 
     color: #343a40; 
-    margin-bottom: 30px; /* Space between FAQ boxes if there are multiple */
+    margin-bottom: 30px;
 }
 
 .faq-group h3 {
-    /* Slightly larger font and more vertical space */
     color: #8a2be2; 
     font-size: 1.6em;
     margin-bottom: 25px;
 }
 
 .faq-group summary {
-    /* Increased vertical padding for more breathing room */
     font-weight: 600;
     padding: 22px 0; 
     list-style: none;
     position: relative;
-    border-bottom: 1px solid #e9ecef; /* Light divider line */
+    border-bottom: 1px solid #e9ecef; 
     color: #343a40;
     cursor: pointer;
 }
 
 .faq-group details:last-of-type summary {
-    /* Remove border from the last summary to keep it clean */
     border-bottom: none;
 }
 
 .faq-group summary::after {
-    /* Arrow styling */
     content: '▼'; 
     position: absolute;
     right: 0;
@@ -248,21 +268,19 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; } /* Larger heading */
     transition: transform 0.3s ease;
 }
 
-.faq-group details[open] summary::after {
-    content: '▲';
-}
-
 .faq-group details p {
-    /* Styling for the answer text */
-    padding: 20px; /* Padding for the answer text block */
+    padding: 20px; 
     margin: 0;
     color: #6c757d;
     line-height: 1.6;
-    border-top: 1px solid #f8f9fa; /* Very subtle top border */
+    border-top: 1px solid #f8f9fa; 
 }
+
+
 /* --- Final Footer --- */
 .final-footer {
-    padding: 40px; /* Thicker, more spacious footer */
+    padding: 40px; 
+    text-align: center;
     background-color: #4b1e7a; 
     color: #e0d1ff;
     margin-top: 80px; 
