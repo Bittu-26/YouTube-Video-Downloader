@@ -1,4 +1,8 @@
-/* --- Global Reset & Base Styling --- */
+/*
+|---------------------------------------------------------
+| GLOBAL RESET AND BASE STYLES
+|---------------------------------------------------------
+*/
 body {
     font-family: Arial, sans-serif;
     background-color: #2a0d4a; /* Deep Violet Background */
@@ -18,21 +22,49 @@ a:hover {
     color: #8a2be2;
 }
 
-/* --- Main Input Container (.container) --- */
-.container {
-    max-width: 500px;
-    margin: 80px auto; /* Increased vertical margin for space */
-    padding: 40px; /* Increased internal padding for space */
-    background-color: #4b1e7a; 
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+/* --- Typography (Common to all sections) --- */
+h2 { color: white; font-size: 2.5em; margin-top: 10px; }
+.subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 60px; } 
+
+/* Tag Style (Used for categorization) */
+.tag { 
+    background-color: #6cf988; /* Green/Teal accent color */
+    color: #2a0d4a; 
+    padding: 8px 18px; 
+    border-radius: 25px;
+    margin-bottom: 20px; 
+    display: inline-block;
 }
 
-/* --- Form Elements --- */
+/* Horizontal Divider */
+hr {
+    border: none;
+    border-top: 1px solid #6a1bb2; 
+    opacity: 0.5;
+    margin: 100px auto; 
+    width: 90%;
+}
+
+
+/*
+|---------------------------------------------------------
+| 1. MAIN APPLICATION FORM (NARROW CONTAINER)
+|---------------------------------------------------------
+*/
+.container {
+    max-width: 500px;
+    margin: 80px auto; 
+    padding: 40px; 
+    background-color: #4b1e7a; /* Darker purple box */
+    border-radius: 12px; 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); 
+}
+
+/* Form Elements */
 input {
     width: 80%;
-    padding: 14px; /* Increased padding */
-    margin: 18px 0 14px; /* Increased vertical margin */
+    padding: 14px; 
+    margin: 18px 0 14px; 
     border-radius: 10px; 
     border: none;
     background-color: #f3eaff; 
@@ -42,7 +74,7 @@ input {
 button {
     background-color: #8a2be2;
     color: white;
-    padding: 14px 24px; /* Increased padding */
+    padding: 14px 24px; 
     margin: 10px 5px;
     border: none;
     cursor: pointer;
@@ -52,34 +84,19 @@ button {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-button:hover {
-    background-color: #6a1bb2;
-}
-
-/* --- Download Buttons & Progress --- */
+button:hover { background-color: #6a1bb2; }
 .download-btn { margin-top: 15px; }
 
-/* Progress Bar & Cleanup */
-progress { height: 18px; }
-progress::-webkit-progress-value { background-color: #8a2be2; }
-progress::-moz-progress-bar { background-color: #8a2be2; }
-.copyright { font-size: 12px; margin-top: 40px; }
-
-
-/* --- Download Options Group (.input-group) --- */
+/* Download Options Group */
 .input-group {
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-    text-align: left; /* Align text within the group */
+    text-align: left;
 }
 
-label { 
-    color: #e0d1ff;
-    margin-bottom: 8px;
-    display: block; /* Ensure label takes full width */
-}
+label { color: #e0d1ff; margin-bottom: 8px; display: block; }
 
 .styled-select {
     width: 100%;
@@ -90,53 +107,50 @@ label {
     color: #000;
     appearance: none; 
 }
-select { appearance: none; }
-option { color: #000; }
 
-/* --- INFORMATIONAL SECTIONS LAYOUT (Wide Structure) --- */
+/* Progress Bar & Cleanup */
+progress { height: 18px; }
+progress::-webkit-progress-value { background-color: #8a2be2; }
+progress::-moz-progress-bar { background-color: #8a2be2; }
+.copyright { font-size: 12px; margin-top: 40px; }
 
-/* Horizontal Divider */
-hr {
-    border: none;
-    border-top: 1px solid #6a1bb2; 
-    opacity: 0.5;
-    margin: 100px auto; /* Increased margin for separation */
-    width: 90%;
-}
 
-/* Typography and Tag */
-h2 { color: white; font-size: 2.5em; margin-top: 10px; }
-.subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 60px; }
-.tag { 
-    background-color: #6cf988; 
-    color: #2a0d4a; 
-    padding: 8px 18px; 
-    border-radius: 25px;
-    margin-bottom: 20px; 
-    display: inline-block;
-}
-
-/* **Wide Section Containers** */
-.section-features,
-.section-how-it-works,
-.section-trusted,
-.section-faq {
+/*
+|---------------------------------------------------------
+| 2. WIDE CONTENT SECTIONS (Informational Blocks)
+|---------------------------------------------------------
+| Uses .wide-section for the main structural grouping.
+*/
+.wide-section {
     max-width: 1200px; /* Allows these sections to stretch wide */
     padding: 40px 20px; 
     margin: 40px auto; 
     text-align: center;
 }
 
-/* Long Form Content Block Styling */
+/* Specific background separation for Policy/Value blocks */
+#value-proposition,
+#tech-specs {
+    background-color: #3b1968; /* Slightly lighter shade than body BG */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Long Form Content Block Styling (Increased readability) */
+.long-content-block {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 20px;
+}
 .long-content-block p {
     color: #e0d1ff; 
     font-size: 1.1em;
-    line-height: 1.8; 
+    line-height: 1.8; /* Increased line height */
     margin-bottom: 30px; 
 }
 
-
-/* --- Grid Layouts (Horizontal Structure) --- */
+/* Grid Layouts (General Settings) */
 .feature-grid, .step-grid, .stats-grid {
     display: grid;
     gap: 40px; 
@@ -151,11 +165,11 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
 .stats-grid { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
 
-/* --- Card Styles (Increased Padding for Spaciness) --- */
+/* --- Card Styles (White Card on Dark Background) --- */
 .feature-item, .step-item, .stat-item {
-    background-color: #ffffff; /* White card background */
+    background-color: #ffffff; 
     color: #343a40; 
-    padding: 45px 30px; 
+    padding: 45px 30px; /* Spacious Padding */
     border-radius: 15px; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
     border: 1px solid #e0d1ff; 
@@ -166,16 +180,24 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); 
 }
 
-/* --- Feature/Icon Styling --- */
+/* Feature/Icon Styling */
 .feature-item h3 { 
     color: #8a2be2; 
     font-size: 1.2em; 
     margin-top: 25px; 
     margin-bottom: 10px;
 }
-.feature-item img {
+.feature-item img,
+.step-item img {
+    /* Fixed outer container size (This is what you already had) */
     width: 50px; 
     height: 50px;
+    
+    /* ADDED RULE: Ensure the image contents never exceed the 50px container size */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures the whole icon is visible without stretching */
+
     margin-bottom: 20px; 
     border: 2px solid #8a2be2;
     border-radius: 50%;
@@ -189,7 +211,7 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
 }
 
 
-/* --- How It Works Section (Spacing) --- */
+/* --- How It Works Section (Steps) --- */
 .step-number {
     background-color: #8a2be2;
     width: 45px;
@@ -203,26 +225,13 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
     color: white;
 }
 .step-item h3 { margin-top: 5px; margin-bottom: 10px; color: #343a40; }
-
-.try-it-btn {
-    padding: 16px 45px; 
-    margin-top: 50px; 
-}
+.try-it-btn { padding: 16px 45px; margin-top: 50px; }
 
 
-/* --- Trusted By Section (Statistics Spacing) --- */
-.stat-value {
-    font-size: 3.2em;
-    font-weight: bold;
-    color: #8a2be2; 
-    margin-bottom: 10px;
-}
-.stat-label {
-    font-size: 1em;
-    color: #6c757d;
-}
+/* --- Statistics and FAQ Sections --- */
+.stat-value { font-size: 3.2em; font-weight: bold; color: #8a2be2; margin-bottom: 10px; }
+.stat-label { font-size: 1em; color: #6c757d; }
 
-/* --- FAQ Section (Accordion) --- */
 .section-faq { 
     max-width: 900px; 
     margin: 0 auto 100px; 
@@ -239,11 +248,7 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
     margin-bottom: 30px;
 }
 
-.faq-group h3 {
-    color: #8a2be2; 
-    font-size: 1.6em;
-    margin-bottom: 25px;
-}
+.faq-group h3 { color: #8a2be2; font-size: 1.6em; margin-bottom: 25px; }
 
 .faq-group summary {
     font-weight: 600;
@@ -255,18 +260,8 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
     cursor: pointer;
 }
 
-.faq-group details:last-of-type summary {
-    border-bottom: none;
-}
-
-.faq-group summary::after {
-    content: '▼'; 
-    position: absolute;
-    right: 0;
-    color: #8a2be2; 
-    font-size: 1em;
-    transition: transform 0.3s ease;
-}
+.faq-group summary::after { content: '▼'; position: absolute; right: 0; color: #8a2be2; font-size: 1em; }
+.faq-group details[open] summary::after { content: '▲'; }
 
 .faq-group details p {
     padding: 20px; 
@@ -277,7 +272,11 @@ h2 { color: white; font-size: 2.5em; margin-top: 10px; }
 }
 
 
-/* --- Final Footer --- */
+/*
+|---------------------------------------------------------
+| 3. FINAL FOOTER
+|---------------------------------------------------------
+*/
 .final-footer {
     padding: 40px; 
     text-align: center;
