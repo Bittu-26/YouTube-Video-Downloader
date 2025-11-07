@@ -5,7 +5,238 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>YouDown - YouTube Downloader</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script async src="https://pagead2.googlesyndicatio<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>YouDown - YouTube Downloader</title>
+    <link rel="stylesheet" href="./styles.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5163041540989959"
+      crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <section class="main-app">
+            <h1>YouDown</h1>
+            <p>Download YouTube videos and audio with ease.</p>
+
+            <input type="text" id="videoURL" placeholder="e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+            <button onclick="fetchVideoInfo()">Fetch Video Info</button>
+
+            <div id="videoInfo" style="display: none; margin: 15px 0;">
+                <img id="videoThumbnail" src="" alt="Video thumbnail" style="max-width: 100%; border-radius: 5px; margin-bottom: 10px;" />
+                <h3 id="videoTitle"></h3>
+                <small id="videoDuration"></small>
+            </div>
+
+            <div id="downloadOptions" style="display: none;">
+                <p>Select format:</p>
+
+                <div class="input-group">
+                    <label for="videoQuality">Video Quality:</label>
+                    <select id="videoQuality" class="styled-select">
+                        <option value="1080p">1080p</option>
+                        <option value="720p" selected>720p</option>
+                        <option value="480p">480p</option>
+                        <option value="360p">360p</option>
+                        <option value="240p">240p</option>
+                        <option value="144p">144p</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="audioBitrate">Audio Bitrate (kbps):</label>
+                    <select id="audioBitrate" class="styled-select">
+                        <option value="320">320</option>
+                        <option value="256">256</option>
+                        <option value="192" selected>192</option>
+                        <option value="128">128</option>
+                    </select>
+                </div>
+
+                <button class="download-btn" onclick="downloadVideo('video')">Download Video</button>
+                <button class="download-btn" onclick="downloadVideo('audio')">Download Audio</button>
+            </div>
+
+            <div id="downloadProgress" style="display: none; margin-top: 15px;">
+                <progress value="0" max="100"></progress>
+                <p id="progressText">Preparing download...</p>
+            </div>
+        </section>
+
+        <p class="copyright">© 2025 YouDown. For personal use only. Please respect copyright laws.</p>
+    </div>
+
+    <hr/>
+
+    <section id="value-proposition" class="wide-section">
+        <div class="tag">Why Use YouDown?</div>
+        <h2>Unlock Your Media Library</h2>
+        <p class="subtitle">Gain offline access and long-term control over public content.</p>
+        
+        <div class="long-content-block">
+            <p>In today's digital world, access to content relies heavily on internet connectivity and platform availability. YouDown provides a crucial service by allowing you to convert publicly available YouTube videos into durable, local files. This is essential for creators who need to archive their own work, educators who require reliable offline viewing materials, or simply for users who wish to enjoy content without relying on a streaming service's constant availability.</p>
+            <p>Our sophisticated backend ensures that every download preserves the original high-definition quality and audio fidelity. We bypass temporary server-side restrictions using advanced technologies to deliver your file directly and instantly. We stand apart by offering transparent service with a focus on privacy—we require no registration, collect no personal data, and maintain a commitment to being 100% free for all users.</p>
+            <p>By using YouDown, you are taking control of your viewing experience. Whether for archival purposes, editing your own uploaded content, or securing educational resources, our service simplifies the entire media handling process safely and efficiently.</p>
+        </div>
+    </section>
+    
+    <hr/>
+
+    <section id="why-choose-us" class="wide-section">
+        <div class="tag">Why Choose Us</div>
+        <h2>Powerful Features</h2>
+        <p class="subtitle">Everything you need to download videos quickly and easily</p>
+        
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="Icons/Free.png" alt="100% Free Icon" />
+                <h3>100% Free</h3>
+                <p>Enjoy unlimited downloads with no subscription fees, hidden charges, or usage limits. Our service is fully supported by non-intrusive ads.</p>
+            </div>
+            <div class="feature-item">
+                <img src="Icons/No.png" alt="No Registration Icon" />
+                <h3>No Registration</h3>
+                <p>We prioritize your privacy. No account creation, no login, and absolutely **no collection of personal data** required for instant service.</p>
+            </div>
+            <div class="feature-item">
+                <img src="Icons/Fast.png" alt="Lightning Fast Icon" />
+                <h3>Lightning Fast</h3>
+                <p>Our optimized servers leverage advanced proxy technologies to process your requests instantly, delivering videos in seconds, not minutes.</p>
+            </div>
+            <div class="feature-item">
+                <img src="Icons/Hd.png" alt="HD Quality Icon" />
+                <h3>HD Quality</h3>
+                <p>We retrieve media streams up to 1080p, ensuring the highest fidelity downloads, preserving the original resolution and clarity of the content.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section id="how-it-works" class="wide-section">
+        <div class="tag">Simple</div>
+        <h2>How It Works</h2>
+        <p>Download your videos in three simple steps</p>
+        
+        <div class="step-grid">
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <img src="Icons/copy.png" alt="Copy URL Icon" /> 
+                <h3>Copy URL</h3>
+                <p>Find the video you want and copy its URL from the address bar or share menu</p>
+            </div>
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <img src="Icons/paste.png" alt="Paste URL Icon" /> 
+                <h3>Paste URL</h3>
+                <p>Paste the copied URL into our downloader input field at the top of this page</p>
+            </div>
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <img src="Icons/download.png" alt="Download Icon" /> 
+                <h3>Download</h3>
+                <p>Click the download button and your video will be saved directly to your device</p>
+            </div>
+        </div>
+        <button class="try-it-btn" onclick="document.getElementById('videoURL').focus()">Try It Now</button>
+    </section>
+    
+    <hr/>
+
+    <section id="trusted-by" class="wide-section">
+        <div class="tag">Trusted by Thousands</div>
+        <h2>User Statistics</h2>
+        <p>Join thousands of satisfied users who download videos every day</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <p class="stat-value">50K+</p>
+                <p class="stat-label">Daily Users</p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-value">100K+</p>
+                <p class="stat-label">Happy Users</p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-value">4.9/5</p>
+                <p class="stat-label">Users Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section id="tech-specs" class="wide-section">
+        <div class="tag">Technical Details</div>
+        <h2>Compatibility and Formats</h2>
+        <p class="subtitle">Ensuring seamless downloads across all major devices and browsers.</p>
+        
+        <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto;">
+            <div class="feature-item">
+                <h3>Video Format</h3>
+                <p>All videos are merged and downloaded in the universally compatible **MP4** format for maximum device compatibility.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Audio Format</h3>
+                <p>Audio-only downloads are processed using FFmpeg and converted to high-quality **MP3** (192kbps default).</p>
+            </div>
+            <div class="feature-item">
+                <h3>Supported Devices</h3>
+                <p>Works flawlessly on Desktop (Windows, Mac, Linux) and Mobile (iOS, Android) without requiring any third-party app installs.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section id="faq" class="section-faq">
+        <div class="tag">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <p class="subtitle">Find answers to common questions about our video downloader</p>
+        
+        <div class="faq-group">
+            <h3>General Questions</h3>
+            <details>
+                <summary>Is this service completely free?</summary>
+                <p>Yes, our video downloader is 100% free with no hidden charges or subscription fees. We rely solely on non-intrusive advertising to cover server costs.</p>
+            </details>
+            <details>
+                <summary>Do I need to create an account?</summary>
+                <p>No, there is absolutely no registration or login required. We value your privacy and aim to provide instant, hassle-free access.</p>
+            </details>
+            <details>
+                <summary>Is it legal to download videos?</summary>
+                <p>Downloading publicly shared content is generally acceptable for personal use, such as archiving or offline viewing. However, you must always respect the creator's copyright and abstain from commercial redistribution.</p>
+            </details>
+        </div>
+
+        <div class="faq-group">
+            <h3>Technical Questions</h3>
+            <details>
+                <summary>What types of content can I download?</summary>
+                <p>Our tool works exclusively with public YouTube video links (including standard watch URLs and short URLs).</p>
+            </details>
+            <details>
+                <summary>How is the video quality?</summary>
+                <p>We retrieve videos in the highest resolution available from the server, which can be up to 1080p, depending on the original upload quality.</p>
+            </details>
+            <details>
+                <summary>Does it work on mobile?</summary>
+                <p>Yes, the website is fully responsive and works on any modern device. Downloads may require confirmation depending on your mobile operating system.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="final-footer">
+        <p>© 2025 Application. All rights reserved. Made by Ayush</p>
+        <p><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>n.com/pagead/js/adsbygoogle.js?client=ca-pub-5163041540989959"
       crossorigin="anonymous"></script>
 </head>
 <body>
@@ -230,3 +461,4 @@
     <script src="./script.js"></script>
 </body>
 </html>
+
