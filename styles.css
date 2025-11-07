@@ -277,6 +277,7 @@ progress::-moz-progress-bar { background-color: #8a2be2; }
 | 3. FINAL FOOTER
 |---------------------------------------------------------
 */
+/* --- Final Footer (Ensuring policy links look good) --- */
 .final-footer {
     padding: 40px; 
     text-align: center;
@@ -284,6 +285,15 @@ progress::-moz-progress-bar { background-color: #8a2be2; }
     color: #e0d1ff;
     margin-top: 80px; 
     font-size: 1em;
+}
+
+.final-footer a {
+    color: #a06ac9; /* Use your light accent color */
+    margin: 0 10px;
+    text-decoration: underline;
+}
+.final-footer a:hover {
+    color: #8a2be2;
 }
 
 /* --- Responsive Adjustments --- */
