@@ -1,8 +1,6 @@
-/* 
-|---------------------------------------------------------
-| GLOBAL RESET AND BASE STYLES — CYBER NEON THEME
-|---------------------------------------------------------
-*/
+/* ---------------------------------------------------------
+   GLOBAL RESET AND BASE STYLES — CYBER NEON THEME
+   --------------------------------------------------------- */
 body {
     font-family: Arial, sans-serif;
     background-color: #0b0f19; /* Deep cyber blue */
@@ -14,7 +12,7 @@ body {
 
 /* Base Link Style */
 a {
-    color: #00eaff;
+    color: #00eaff; 
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -22,11 +20,11 @@ a:hover {
     color: #ff3bd4;
 }
 
-/* Typography */
+/* --- Typography --- */
 h2 { color: white; font-size: 2.5em; margin-top: 10px; }
-.subtitle { color: #b5c7ff; font-size: 1.1em; margin-bottom: 60px; } 
+.subtitle { color: #b5c7ff; font-size: 1.1em; margin-bottom: 60px; }
 
-/* Tag */
+/* Tag Style */
 .tag { 
     background-color: #ff3bd4;
     color: #0b0f19; 
@@ -46,21 +44,19 @@ hr {
 }
 
 
-/*
-|---------------------------------------------------------
-| MAIN APPLICATION FORM
-|---------------------------------------------------------
-*/
+/* ---------------------------------------------------------
+   1. MAIN APPLICATION FORM
+   --------------------------------------------------------- */
 .container {
     max-width: 500px;
     margin: 80px auto; 
     padding: 40px; 
-    background-color: #151a2b; 
+    background-color: #151a2b; /* Cyber dark panel */
     border-radius: 12px; 
     box-shadow: 0 8px 30px rgba(0, 255, 255, 0.2);
 }
 
-/* Form Elements */
+/* Form Inputs */
 input {
     width: 80%;
     padding: 14px; 
@@ -90,6 +86,19 @@ button:hover {
     transform: scale(1.02);
 }
 
+.download-btn { margin-top: 15px; }
+
+/* Input Group */
+.input-group {
+    margin-bottom: 25px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+label { color: #b5c7ff; margin-bottom: 8px; display: block; }
+
 /* Dropdown */
 .styled-select {
     width: 100%;
@@ -98,61 +107,104 @@ button:hover {
     border-radius: 10px;
     background-color: #e9f8ff;
     color: #000;
-    appearance: none;
+    appearance: none; 
 }
 
+/* Progress Bar */
+progress { height: 18px; }
+progress::-webkit-progress-value { background-color: #00eaff; }
+progress::-moz-progress-bar { background-color: #00eaff; }
 
-/*
-|---------------------------------------------------------
-| WIDE SECTIONS
-|---------------------------------------------------------
-*/
-#wvalue-proposition,
+
+/* ---------------------------------------------------------
+   2. WIDE CONTENT SECTIONS
+   --------------------------------------------------------- */
+.wide-section {
+    max-width: 1200px;
+    padding: 40px 20px; 
+    margin: 40px auto; 
+    text-align: center;
+}
+
+#value-proposition,
 #tech-specs {
     background-color: #101522;
     padding-top: 80px;
     padding-bottom: 80px;
 }
 
+.long-content-block {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 20px;
+}
+
 .long-content-block p {
     color: #c8e7ff; 
     font-size: 1.1em;
     line-height: 1.8;
+    margin-bottom: 30px;
 }
 
-/* Grids */
+/* Grid Layouts */
 .feature-grid, .step-grid, .stats-grid {
     display: grid;
-    gap: 40px;
+    gap: 40px; 
+    margin-bottom: 40px;
+    padding: 0; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feature-grid { grid-template-columns: repeat(4, 1fr); }
 .step-grid { grid-template-columns: repeat(3, 1fr); }
-.stats-grid { grid-template-columns: repeat(3, 1fr); }
+.stats-grid { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
-/* Cards */
+
+/* ---------------------------------------------------------
+   Card Styles
+   --------------------------------------------------------- */
 .feature-item, .step-item, .stat-item {
     background-color: #ffffff; 
     color: #222; 
     padding: 45px 30px;
     border-radius: 15px; 
-    border: 1px solid #00eaff; 
     box-shadow: 0 10px 30px rgba(0,255,255,0.15);
+    border: 1px solid #00eaff; 
+    transition: box-shadow 0.3s ease;
 }
 
 .feature-item:hover, .step-item:hover, .stat-item:hover {
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.25);
 }
 
-/* Icon Styling */
-.feature-item h3 { color: #00eaff; }
-.feature-item img {
-    width: 50px;
+/* Icons */
+.feature-item h3 { 
+    color: #00eaff; 
+    font-size: 1.2em; 
+    margin-top: 25px; 
+    margin-bottom: 10px;
+}
+
+.feature-item img,
+.step-item img {
+    width: 50px; 
     height: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin-bottom: 20px; 
     border: 2px solid #00eaff;
-    background-color: #e9f8ff;
     border-radius: 50%;
     padding: 10px;
+    background-color: #e9f8ff; 
+}
+
+.feature-item p {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.7; 
 }
 
 
@@ -162,57 +214,92 @@ button:hover {
     width: 45px;
     height: 45px;
     font-size: 1.4em;
+    margin: 0 auto 25px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     color: white;
-    margin: 0 auto 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.stat-value {
-    font-size: 3.2em;
-    font-weight: bold;
-    color: #00eaff;
+.step-item h3 { margin-top: 5px; margin-bottom: 10px; color: #222; }
+.try-it-btn { padding: 16px 45px; margin-top: 50px; }
+
+
+/* Stats */
+.stat-value { font-size: 3.2em; font-weight: bold; color: #00eaff; margin-bottom: 10px; }
+.stat-label { font-size: 1em; color: #555; }
+
+
+/* ---------------------------------------------------------
+   FAQ
+   --------------------------------------------------------- */
+.section-faq { 
+    max-width: 900px; 
+    margin: 0 auto 100px; 
+    padding: 0 20px; 
+    text-align: left;
 }
 
-
-/*
-|---------------------------------------------------------
-| FAQ
-|---------------------------------------------------------
-*/
 .faq-group {
-    background-color: #ffffff;
-    border: 1px solid #00eaff;
+    border: 1px solid #00eaff; 
     border-radius: 15px;
+    padding: 35px;
+    background-color: #ffffff; 
+    color: #222; 
+    margin-bottom: 30px;
 }
 
-.faq-group h3 { color: #00eaff; }
+.faq-group h3 { color: #00eaff; font-size: 1.6em; margin-bottom: 25px; }
+
+.faq-group summary {
+    font-weight: 600;
+    padding: 22px 0; 
+    list-style: none;
+    position: relative;
+    border-bottom: 1px solid #e9ecef; 
+    color: #222;
+    cursor: pointer;
+}
+
+.faq-group summary::after { content: '▼'; position: absolute; right: 0; color: #00eaff; font-size: 1em; }
+.faq-group details[open] summary::after { content: '▲'; }
+
+.faq-group details p {
+    padding: 20px; 
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    border-top: 1px solid #f8f9fa; 
+}
 
 
-/*
-|---------------------------------------------------------
-| FOOTER
-|---------------------------------------------------------
-*/
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
 .final-footer {
     padding: 40px; 
     text-align: center;
     background-color: #151a2b; 
     color: #c8e7ff;
+    margin-top: 80px; 
+    font-size: 1em;
 }
 
 .final-footer a {
     color: #00eaff;
+    margin: 0 10px;
+    text-decoration: underline;
 }
 .final-footer a:hover {
     color: #ff3bd4;
 }
 
-/* --- Responsive Adjustments --- */
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
 @media (max-width: 768px) {
-    /* Stack all grids vertically on smaller screens */
     .feature-grid, .step-grid, .stats-grid {
         grid-template-columns: 1fr; 
         padding: 0 15px;
@@ -221,4 +308,3 @@ button:hover {
         margin: 40px auto;
     }
 }
-
