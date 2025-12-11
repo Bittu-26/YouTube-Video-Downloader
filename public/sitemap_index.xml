@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <sitemap>
+        <loc>https://youtubevideodownloader-vert.vercel.app/wp-sitemap-posts-post-1.xml</loc>
+        <lastmod>2025-12-11</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://youtubevideodownloader-vert.vercel.app/wp-sitemap-posts-page-1.xml</loc>
+        <lastmod>2025-12-11</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://youtubevideodownloader-vert.vercel.app/wp-sitemap-taxonomies-category-1.xml</loc>
+        <lastmod>2025-12-11</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://youtubevideodownloader-vert.vercel.app/wp-sitemap-users-1.xml</loc>
+        <lastmod>2025-12-11</lastmod>
+    </sitemap>
+
+</sitemapindex>
