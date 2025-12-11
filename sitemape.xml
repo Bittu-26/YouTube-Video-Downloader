@@ -3,7 +3,7 @@
   
   <!-- Home page -->
   <url>
-    <loc>https://your-domain.com/</loc>
+    <loc>https://youtubevideodownloader-vert.vercel.app/</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -11,21 +11,21 @@
 
   <!-- If you have other static pages -->
   <url>
-    <loc>https://your-domain.com/privacy.html</loc>
+    <loc>https://youtubevideodownloader-vert.vercel.app/privacy.html</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/terms.html</loc>
+    <lochttps://youtubevideodownloader-vert.vercel.app/terms.html</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://your-domain.com/contact.html</loc>
+    <loc>https://youtubevideodownloader-vert.vercel.app/contact.html</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -33,7 +33,7 @@
 
   <!-- Assets or resources (if indexable) -->
   <url>
-    <loc>https://your-domain.com/favicon.ico</loc>
+    <loc>https://youtubevideodownloader-vert.vercel.app/favicon.ico</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
