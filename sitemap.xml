@@ -1,42 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- Home page -->
-  <url>
-    <loc>https://youtubevideodownloader-vert.vercel.app/</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
 
-  <!-- If you have other static pages -->
-  <url>
-    <loc>https://youtubevideodownloader-vert.vercel.app/privacy.html</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://youtubevideodownloader-vert.vercel.app/terms.html</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://youtubevideodownloader-vert.vercel.app/contact.html</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
+    <!-- ============================
+         CORE PAGES
+    ============================ -->
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-  <!-- Assets or resources (if indexable) -->
-  <url>
-    <loc>https://youtubevideodownloader-vert.vercel.app/favicon.ico</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/download</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+
+    <!-- ============================
+         STATIC PAGES (IF ANY)
+    ============================ -->
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/privacy</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/terms</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/contact</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+
+    <!-- ============================
+         API ROUTES (OPTIONAL — INDEXABLE OR NOT)
+         Only add these if you WANT search crawlers to see your API.
+         Otherwise REMOVE or mark with <meta noindex>.
+    ============================ -->
+
+  
+
+
+    <!-- ============================
+         STATIC FILES
+    ============================ -->
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/favicon.ico</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/assets/logo.png</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/assets/styles.css</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+
+    <!-- ============================
+         FALLBACK / ERROR PAGES
+    ============================ -->
+    <url>
+        <loc>https://youtubevideodownloader-vert.vercel.app/404</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.0</priority>
+    </url>
 
 </urlset>
