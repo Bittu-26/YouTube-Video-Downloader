@@ -8,7 +8,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # 3. Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app 
 
 # 4. Copy and install Python dependencies
 COPY requirements.txt ./
